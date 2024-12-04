@@ -49,8 +49,10 @@ Configure os tipos recomendados pare Node22
 ```bash
 echo '{
   "extends": "@tsconfig/node22/tsconfig.json",
-  "include": ["src/**/*"], 
-  "compilerOptions": {"outDir": "dist"}
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  }
 }' > tsconfig.json
 ```
 
@@ -77,11 +79,12 @@ Inclua um `start` script no seu [package.json](./package.json):
 
 Rode o `start` script:
 ```sh
-npm run start
+npm start
 
 # hello world
 ```
 
 # Referencias
 
-[Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)
+* [How to Setup a TypeScript + Node.js Project](
+https://khalilstemmler.com/blogs/typescript/node-starter-project/)

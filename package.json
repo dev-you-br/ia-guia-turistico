@@ -1,0 +1,15 @@
+{
+  "name": "ia-guia-turistico",
+  "version": "1.0.0",
+  "description": "Este site oferece guias turísticos para diversas cidades brasileiras, criado com a tecnologia de inteligência artificial (AI) do Llama, TypeScript e hospedado no GitHub Pages.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

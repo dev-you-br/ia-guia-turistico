@@ -25,6 +25,11 @@ Outros desenvolvedores pode carregar a mesma versao do Node com:
 nvm use
 ```
 
+Inicialize o project com npm:
+```bash
+npm init -y
+```
+
 # Referencias
 
 [Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)

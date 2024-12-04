@@ -13,6 +13,17 @@ Agora clone am sua maquina:
 ```bash
 git clone git@github.com:dev-you-br/ia-guia-turistico.git
 ```
+## Preparar o projeto
+
+Crie um arquivo `.nvmrc` para guardar a versao to Node que vamos utilizar no projeto.
+```bash
+node -v > .nvmrc
+```
+
+Outros desenvolvedores pode carregar a mesma versao do Node com:
+```bash
+nvm use
+```
 
 # Referencias
 

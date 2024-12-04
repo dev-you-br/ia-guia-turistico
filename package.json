@@ -8,13 +8,17 @@
     "start": "tsc && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["ai", "github pages"],
+  "keywords": [
+    "ai",
+    "github pages"
+  ],
   "author": "DevYouBr",
   "license": "MIT",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/node": "^22.10.1",
+    "prettier": "3.4.2",
     "typescript": "^5.7.2"
   }
 }

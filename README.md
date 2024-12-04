@@ -13,3 +13,7 @@ Agora clone am sua maquina:
 ```bash
 git clone git@github.com:dev-you-br/ia-guia-turistico.git
 ```
+
+# Referencias
+
+[Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)

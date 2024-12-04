@@ -30,6 +30,58 @@ Inicialize o project com npm:
 npm init -y
 ```
 
+Instale typescript:
+```bash
+npm install typescript --save-dev
+```
+
+Instale Node types
+```bash
+npm install @types/node --save-dev
+```
+
+Instale os tipos recomendados pare Node
+```bash
+npm install --save-dev @tsconfig/node22
+```
+
+Configure os tipos recomendados pare Node22
+```bash
+echo '{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "include": ["src/**/*"], 
+  "compilerOptions": {"outDir": "dist"}
+}' > tsconfig.json
+```
+
+Crie um diretorio `src`:
+```bash
+mkdir src
+```
+
+Crie um `src/index.ts`
+```bash
+echo 'console.log("hello world")' > src/index.ts
+```
+
+Inclua um `start` script no seu [package.json](./package.json):
+```json
+{
+// ...
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+// ...
+  }
+}
+```
+
+Rode o `start` script:
+```sh
+npm run start
+
+# hello world
+```
+
 # Referencias
 
 [Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander/)

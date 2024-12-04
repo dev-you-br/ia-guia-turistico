@@ -45,10 +45,15 @@ Instale os tipos recomendados pare Node
 npm install --save-dev @tsconfig/node22
 ```
 
+Instale configuracoes estritas
+```sh
+npm install --save-dev @tsconfig/strictest
+```
+
 Configure os tipos recomendados pare Node22
 ```bash
 echo '{
-  "extends": "@tsconfig/node22/tsconfig.json",
+  "extends": ["@tsconfig/strictest/tsconfig.json", "@tsconfig/node22/tsconfig.json"],
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist"

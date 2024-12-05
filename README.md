@@ -141,11 +141,13 @@ npm install csv-parser
 ```
 
 Adicione um script no [package.json](./package.json) para converter os arquivos:
+
 ```json
 "parse-cities": "tsc && node dist/parse-cities.js"
 ```
 
 Converta os arquivos:
+
 ```sh
 npm run parse-cities
 ```

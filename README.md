@@ -114,6 +114,42 @@ coverage
 package-lock.json' > .prettierignore
 ```
 
+## Desenvolvendo o Projeto
+
+### Baixe a lista de cidades brasileiras
+
+Baixe a lista de cidades brasileiras por populacao no site to [IBGE](https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2021/)
+
+Limpe o arquivo no excel e remova o cabecalho, rodape, e exporte para `.csv` em `./resources/cities.csv`
+
+Exemplo do arquivo `.csv`:
+
+```csv
+UF,COD_UF,COD_MUNICIPIO,NOME_DO_MUNICIPIO,POPULACAO_ESTIMADA
+RO,11,00015,Alta Floresta D'Oeste,22516
+RO,11,00023,Ariquemes,111148
+RO,11,00031,Cabixi,5067
+RO,11,00049,Cacoal,86416
+```
+
+### Converta a lista de cidades brasileiras para JSON
+
+Crie um novo arquivo [./src/parse-cities.ts](./src/parse-cities.ts) e implemente a conversao do arquivo `./resources/cities.csv` para `./resources/cities.json`
+
+```sh
+npm install csv-parser
+```
+
+Adicione um script no [package.json](./package.json) para converter os arquivos:
+```json
+"parse-cities": "tsc && node dist/parse-cities.js"
+```
+
+Converta os arquivos:
+```sh
+npm run parse-cities
+```
+
 # Referencias
 
 - [How to Setup a TypeScript + Node.js Project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)

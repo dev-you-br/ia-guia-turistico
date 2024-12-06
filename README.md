@@ -152,6 +152,16 @@ Converta os arquivos:
 npm run parse-cities
 ```
 
+## Gerar um layout padrao
+
+Crie um novo arquivo [./resources/layout.html](./resources/layout.html) e [./resources/styles.css](./resources/styles.css) que vao conter o esqueleto da nossa pagina, o counteudo vai ser inserido posteriorment.
+
+No *layout.html* inclua:
+* O texto `{{CONTENT}}` no *layout.html* que posteriormente vai ser substitudo pelo conteudo de cada pagina.
+* Link para a pagina `./home.html`
+* Link para a pagina `./cities.html`
+
+
 # Referencias
 
 - [How to Setup a TypeScript + Node.js Project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)

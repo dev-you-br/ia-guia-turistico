@@ -129,24 +129,21 @@ table {
 }
 
 /* End of css reset */
-html {
-  height: 100%;
-}
-
 body {
-  height: 100%;
+  height: 100vh;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: flex;
   flex-flow: column;
   color: #1c1c1c;
+  background-color: #fdfdfd;
+  overflow-x: hidden;
 }
 
 .layout-container {
   display: flex;
   flex-flow: column;
   align-items: center;
-  background-color: gainsboro;
 }
 
 .layout-item {
@@ -159,14 +156,27 @@ body {
   flex: 5;
 }
 
-.header {
-  min-height: 120px;
-  background-image: url("./header.jpg");
-  background-repeat: no-repeat;
+.header-container {
+  min-height: 160px;
+  background: linear-gradient(rgba(0,0,0,0) 140px,#fdfdfd 160px), url('./header.jpg');
+}
+
+.header-item {
+}
+
+.header-item-title {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bolder;
+  font-size: 4em;
+  color: white;
+  text-shadow: 4px 4px 7px rgb(36, 36, 192);
+  position: relative;
+  left: 20px;
+  top: 10px
 }
 
 .footer-container {
-  background-color: #1f2353;
+  background-color: #164b7d;
   color: white;
 }
 

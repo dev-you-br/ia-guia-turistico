@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import csv from 'csv-parser'
 import { z } from 'zod'
+import { createReadStream } from 'fs'
 
 const inputPath = './resources/cities.csv'
 const outputPath = './resources/cities.json'
@@ -27,7 +28,7 @@ type City = z.infer<typeof citySchema>
 
 const cities: Array<City> = []
 
-fs.createReadStream(inputPath)
+createReadStream(inputPath)
   .pipe(csv())
   .on('data', (data) => {
     cities.push(citySchema.parse(data))

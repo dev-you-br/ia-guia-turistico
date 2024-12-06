@@ -190,7 +190,6 @@ body {
   font-weight: bold;
   font-size: 1.25em;
   padding: 0.5em 1em 0.5em 1em;
-  margin: 0 2em 0 0;
   border: #164b7d solid 2px;
   border-bottom: 2px solid #fdfdfd;
   position: relative;
@@ -225,4 +224,9 @@ body {
 .footer-item p {
   text-align: center;
   margin: 0.5em;
+}
+
+.cities-links {
+  text-align: center;
+  line-height: 1.5em;
 }

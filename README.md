@@ -8,7 +8,7 @@ Neste projeto, vamos desenvolver tudo do zero. Será uma excelente oportunidade 
 
 Crie um novo repositório no GitHub:
 
-![Crie um Repositorio no Guithub](./doc/create-github-repository.png)
+![Crie um Repositorio no Guithub](./resources/create-github-repository.png)
 
 Agora clone am sua maquina:
 

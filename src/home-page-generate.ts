@@ -2,7 +2,7 @@ import * as fs from "fs"
 import csv from "csv-parser"
 import { z } from "zod"
 
-const inputPath = "./resources/cities.csv"
+const inputPath = "./resources/cidades.csv"
 const outputPath = "./resources/cities.json"
 
 console.info(`Parsing csv to json from ${inputPath} to ${outputPath}`)

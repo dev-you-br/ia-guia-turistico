@@ -140,13 +140,7 @@ Crie um novo arquivo [./src/parse-cities.ts](./src/parse-cities.ts) e implemente
 npm install csv-parser
 ```
 
-Adicione um script no [package.json](./package.json) para converter os arquivos:
-
-```json
-"parse-cities": "tsc && node dist/parse-cities.js"
-```
-
-Converta os arquivos:
+Crie um script para converter os arquivos:
 
 ```sh
 npm run parse-cities
@@ -156,10 +150,22 @@ npm run parse-cities
 
 Crie um novo arquivo [./resources/layout.html](./resources/layout.html) e [./resources/styles.css](./resources/styles.css) que vao conter o esqueleto da nossa pagina, o counteudo vai ser inserido posteriorment.
 
-No *layout.html* inclua:
-* O texto `{{CONTENT}}` no *layout.html* que posteriormente vai ser substitudo pelo conteudo de cada pagina.
-* Link para a pagina `./home.html`
+No _layout.html_ inclua:
 
+- O texto `{{CONTENT}}` no _layout.html_ que posteriormente vai ser substitudo pelo conteudo de cada pagina.
+- Link para a pagina `./home.html`
+
+## Gerar pagina inicial: home.html
+
+Implemente a funcionalidade que vai criar a pagina inicial que contem uma lista com as 10 cidades mais populosas.
+Cada cidade eh um link para a correspondente pagina da cidade.
+Por example, a cidade `Sao Paulo` terah um link para a pagina `sao-paulo.html`
+
+Crie um script para gerar a pagina inicial:
+
+```sh
+npm run home-page-generate
+```
 
 # Referencias
 

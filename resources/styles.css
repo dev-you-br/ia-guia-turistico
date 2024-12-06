@@ -199,13 +199,11 @@ body {
 }
 
 .header-item-cities a:hover {
-  cursor: pointer;
   background-color: azure;
-  border-bottom: 2px solid #161616;
+  border-bottom: 2px solid #333;
 }
 
 .header-item-cities a:active {
-  cursor: pointer;
   background-color: cyan;
 }
 

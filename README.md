@@ -159,7 +159,6 @@ Crie um novo arquivo [./resources/layout.html](./resources/layout.html) e [./res
 No *layout.html* inclua:
 * O texto `{{CONTENT}}` no *layout.html* que posteriormente vai ser substitudo pelo conteudo de cada pagina.
 * Link para a pagina `./home.html`
-* Link para a pagina `./cities.html`
 
 
 # Referencias

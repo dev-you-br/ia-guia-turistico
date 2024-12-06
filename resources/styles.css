@@ -131,8 +131,7 @@ table {
 /* End of css reset */
 body {
   height: 100vh;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   display: flex;
   flex-flow: column;
   color: #1c1c1c;
@@ -149,7 +148,7 @@ body {
 .layout-item {
   flex: 1;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
 }
 
 .layout-grow {
@@ -157,22 +156,49 @@ body {
 }
 
 .header-container {
-  min-height: 160px;
-  background: linear-gradient(rgba(0,0,0,0) 140px,#fdfdfd 160px), url('./header.jpg');
+  min-height: 350px;
+  background: url("./header.jpg");
+  border-bottom: 2px solid #164b7d;
+  /* background: linear-gradient(rgba(0, 0, 0, 0) 380px, #fdfdfd 400px),
+    url("./header.jpg"); */
 }
 
 .header-item {
+  display: flex;
+  flex-flow: column;
 }
 
 .header-item-title {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  flex: 1;
   font-weight: bolder;
-  font-size: 4em;
+  font-size: 4rem;
   color: white;
   text-shadow: 4px 4px 7px rgb(36, 36, 192);
+  margin-top: 7rem;
+}
+
+.header-item-cities {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.header-item-cities button {
+  background-color: #fdfdfd;
+  font-size: 1.25em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0 2em 0 0;
+  border: #164b7d solid 2px;
+  border-bottom: 2px solid #fdfdfd;
   position: relative;
-  left: 20px;
-  top: 10px
+  top: 2px;
+}
+
+.content {
+  margin-top: 1em;
+  color: #333;
+  line-height: 1.25em;
 }
 
 .footer-container {

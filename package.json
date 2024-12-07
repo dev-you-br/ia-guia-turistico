@@ -5,11 +5,11 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "tsc && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier . --write",
+    "clear-website": "rm -rf ./docs",
     "parse-cities": "tsc && node dist/parse-cities.js",
-    "home-page-generate": "tsc && node dist/home-page-generate.js"
+    "generate-index-page": "tsc && node dist/generate-index-page.js",
+    "generate-cities-pages": "tsc && node dist/generate-cities-pages.js"
   },
   "keywords": [
     "ai",
@@ -26,8 +26,9 @@
   },
   "dependencies": {
     "@types/lodash-es": "^4.17.12",
+    "axios": "^1.7.9",
     "csv-parser": "^3.0.0",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "zod": "^3.23.8"
   }
 }

@@ -1,12 +1,15 @@
-import * as fs from 'fs'
 import csv from 'csv-parser'
 import { z } from 'zod'
-import { createReadStream } from 'fs'
+import { createReadStream, writeFile } from 'fs'
+import { City } from './schema.js'
 
-const inputPath = './resources/cities.csv'
-const outputPath = './resources/cities.json'
+const inputPath = './resources/cities.csv' as const
+const outputPath = './resources/cities.json' as const
+const limit = 10 as const
 
-console.info(`Parsing csv to json from ${inputPath} to ${outputPath}`)
+console.info(
+  `Reading from ${inputPath}. Writting to ${outputPath} with a limit of ${limit}`,
+)
 
 export const citySchema = z
   .object({
@@ -24,23 +27,20 @@ export const citySchema = z
     population: c.POPULACAO_ESTIMADA,
   }))
 
-type City = z.infer<typeof citySchema>
-
 const cities: Array<City> = []
-
 createReadStream(inputPath)
   .pipe(csv())
-  .on('data', (data) => {
-    cities.push(citySchema.parse(data))
-  })
-  .on('end', () => writeToFile(cities))
+  .on('data', (data) => cities.push(citySchema.parse(data)))
+  .on('end', () => parseToJsonFile(cities))
 
-const writeToFile = (citiesToWrite: Array<City>) => {
-  const citiesSorted = citiesToWrite.sort((a, b) => b.population - a.population)
+const parseToJsonFile = (citiesToWrite: Array<City>) => {
+  const citiesSorted = citiesToWrite
+    .sort((a, b) => b.population - a.population)
+    .slice(0, limit)
   const output = JSON.stringify(citiesSorted, null, 2)
-  fs.writeFile(outputPath, output, (err) => {
+  writeFile(outputPath, output, (err) => {
     if (err) throw err
   })
 }
 
-console.info(`Done parsing cities file at ${outputPath}`)
+console.info(`Done parsing`)

@@ -1,8 +1,10 @@
-import { z } from "zod"
+import { z } from 'zod'
 
 export const citySchema = z.object({
   name: z.string(),
-  population: z.number()
+  nameNormalized: z.string(),
+  region: z.string(),
+  population: z.number(),
 })
 
 export const citiesSchema = z.array(citySchema)

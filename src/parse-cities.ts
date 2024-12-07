@@ -14,6 +14,7 @@ console.info(
 export const citySchema = z
   .object({
     NOME_DO_MUNICIPIO: z.string(),
+    UF: z.string(),
     POPULACAO_ESTIMADA: z
       .string()
       .transform((p) => {
@@ -24,6 +25,11 @@ export const citySchema = z
   })
   .transform((c) => ({
     name: c.NOME_DO_MUNICIPIO,
+    nameNormalized: c.NOME_DO_MUNICIPIO.normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replaceAll(' ', '-')
+      .toLocaleLowerCase(),
+    region: c.UF,
     population: c.POPULACAO_ESTIMADA,
   }))
 
@@ -43,4 +49,4 @@ const parseToJsonFile = (citiesToWrite: Array<City>) => {
   })
 }
 
-console.info(`Done parsing`)
+console.info(`Done!`)

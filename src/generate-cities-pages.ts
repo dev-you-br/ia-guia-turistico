@@ -112,10 +112,12 @@ for (const c of citiesWithLlamas) {
 console.log('Done!')
 
 async function postLlama(city: City): Promise<string> {
-  console.log(`Asking Llama to generate contento for ${city.name}-${city.region}`)
+  console.log(
+    `Asking Llama to generate contento for ${city.name}-${city.region}`,
+  )
   const prompt = promptTemplate
-  .replace('{{NAME}}', city.name)
-  .replace('{{REGION}}', city.region)
+    .replace('{{NAME}}', city.name)
+    .replace('{{REGION}}', city.region)
 
   const data = {
     model: 'llama3.2',

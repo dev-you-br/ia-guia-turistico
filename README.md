@@ -158,40 +158,41 @@ No `layout.html`, inclua:
 - O texto `{{CONTENT}}` usado como uma marcação para ser substituído posteriormente.
 - Link para a página `./index.html`
 
-
-
-
-
-
-
 ### Gerar Página Inicial: index.html
+
 Implemente a funcionalidade que criará a página inicial, salvando o resultado em [./docs/index.html](./docs/index.html).
 Leia os arquivos [./resources/layout.html](./resources/layout.html) e [./resources/cities.json](./resources/cities.json).
 Transforme as cidades em `cities.json` em links para suas respectivas páginas.
 Por exemplo, a cidade `São Paulo` terá um link para a página `./sao-paulo.html`.
 
 Crie o diretório `./docs/`:
+
 ```sh
 mkdir docs
 ```
 
 Crie um script para gerar a página inicial:
+
 ```sh
 npm run generate-index-page
 ```
 
 ### Gerar Páginas das Cidades: city-x.html
+
 Implemente a funcionalidade para gerar as páginas das cidades.
 Siga os passos deste guia para criar um servidor Llama rodando localmente: ?????
 
 Utilize o seguinte prompt de IA para cada cidade:
+
 ```
 Onde fica a cidade de {{CIDADE}}.
 ```
+
 Cada cidade deve ser gerada em um arquivo HTML no diretório `./docs`.
 Por exemplo, para a cidade `São Paulo`, gere o arquivo `./docs/sao-paulo.html`.
 
 Crie um script para gerar as páginas das cidades:
+
 ```sh
 npm run generate-cities-pages
 ```

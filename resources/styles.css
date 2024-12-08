@@ -1,97 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -105,66 +11,35 @@ nav,
 section {
   display: block;
 }
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
 
+* {
+  padding: 0;
+  margin: 0;
+}
 /* End of css reset */
 
-h1, h2, h3, h4, h5 {
-  font-weight: bold;
-  margin: 1em 0 .5em 0;
-}
-
-h1 {
-  font-size: 20pt;
-}
-h2 {
-  font-size: 18pt;
-}
-h3 {
-  font-size: 16pt;
-}
-
-body {
-  height: 100vh;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.layout-body {
   display: flex;
-  flex-flow: column;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #1c1c1c;
   background-color: #fdfdfd;
   overflow-x: hidden;
 }
 
 .layout-container {
+  flex: 1;
   display: flex;
-  flex-flow: column;
-  align-items: center;
+  flex-flow: column nowrap;
+  max-width: 500px;
+  width: 100%;
 }
 
 .layout-item {
   flex: 1;
-  width: 100%;
-  max-width: 1000px;
 }
 
 .layout-grow {
@@ -175,11 +50,15 @@ body {
   min-height: 350px;
   background: url('./header.jpg');
   border-bottom: 2px solid #164b7d;
+  max-width: 100%;
+  align-items: center;
 }
 
 .header-item {
   display: flex;
   flex-flow: column;
+  max-width: 500px;
+  width: 100%;
 }
 
 .header-item-title a {
@@ -222,15 +101,10 @@ body {
   background-color: cyan;
 }
 
-.content {
-  margin-top: 1em;
-  color: #333;
-  line-height: 1.25em;
-}
-
 .footer-container {
   background-color: #164b7d;
   color: white;
+  min-width: 100%;
 }
 
 .footer-item {
@@ -245,4 +119,31 @@ body {
 .cities-links {
   text-align: center;
   line-height: 1.5em;
+}
+
+.content {
+  display: block;
+  padding: 0rem 1rem 0rem 1rem;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+h1 {
+  font-size: 20pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 16pt;
 }

@@ -48,9 +48,9 @@ section {
 
 .header-container {
   min-height: 350px;
+  max-width: 100%;
   background: url('./header.jpg');
   border-bottom: 2px solid #164b7d;
-  max-width: 100%;
   align-items: center;
 }
 
@@ -69,7 +69,6 @@ section {
   text-shadow: 4px 4px 7px rgb(36, 36, 192);
   margin-top: 6rem;
   text-decoration: none;
-  display: block;
 }
 
 .header-item-cities {

@@ -8,73 +8,67 @@ const outputDir = './docs'
 const llamaUrl = 'http://localhost:11434/api/generate'
 const layoutPath = './resources/layout.html' as const
 const promptTemplate = `
-Crie um guia turístico para a cidade de {{NAME}}, {{REGION}}, Brasil, seguindo estas especificações:
+Crie um guia turístico para a cidade de {{NAME}}-{{REGION}}, Brasil, seguindo estas especificações:
 
 Introdução:
-
 Apresente a cidade, destacando sua importância histórica, cultural e arquitetônica.
-Cinco seções de atrações turísticas:
 
-Inclua uma variedade de atrações, sendo algumas gratuitas e outras pagas.
+Atrações turísticas:
+Inclua cinco atrações turísticas, sendo algumas gratuitas e outras pagas (inclua o valor quando pagas).
 Descreva brevemente cada atração, destacando o que a torna especial.
-Três seções com sugestões de restaurantes locais:
 
-Liste opções com pratos típicos da culinária local e regional.
-Inclua pelo menos uma opção acessível e outra sofisticada.
+Restaurantes:
+Inclua três restaurantes com pratos típicos da culinária local e regional.
+Sendo dois restaurante acessível e um sofisticado.
+
 Dicas práticas de viagem:
+Aborde temas como a melhor época para visitar e transporte na cidade.
 
-Aborde temas como a melhor época para visitar, transporte na cidade e dicas de segurança.
 Formato de saída:
+Não inclua elementos externos como <html>, <head> ou <body> pois o conteúdo será inserido em um página existente.
+Retorne o conteúdo em HTML básico limitise apenas aos elementos de typografia: <h1>, <h2>, <h3><p>.
 
-Retorne o conteúdo em HTML básico sem scripts, styles ou classes adicionais.
-Todo o conteúdo deve estar contido dentro de uma única <div>, pois será inserido em um layout externo.
-Não inclua elementos externos como <html>, <head> ou <body>.
+Aqui um examplo para a cidade de Brasília-DF para a sua referência:
+<h1>Guia Turístico de Brasília - DF</h1>
 
+<h2>Introdução</h2>
+<p>Brasília, a capital do Brasil, é um exemplo singular de planejamento urbano e arquitetura modernista. Projetada por Lúcio Costa e Oscar Niemeyer, a cidade foi inaugurada em 1960 e é reconhecida como Patrimônio Mundial da UNESCO. Além de ser o centro administrativo do país, Brasília é um destino fascinante para os amantes de história, cultura e design arquitetônico.</p>
 
-Aqui um examplo para a cidade de Brasília para a sua referencia:
+<h2>Atrações Turísticas</h2>
 
-<div>
-    <h1>Guia Turístico de Brasília, DF, Brasil</h1>
-    
-    <h2>Introdução</h2>
-    <p>Brasília, a capital do Brasil, é um marco de planejamento urbano e arquitetura moderna. Inaugurada em 1960, a cidade foi projetada por Lúcio Costa e ostenta obras icônicas de Oscar Niemeyer. Além de ser o centro político do país, Brasília é um polo cultural e artístico, com paisagens únicas, monumentos impressionantes e um céu de tirar o fôlego.</p>
-    
-    <h2>Atrações Turísticas</h2>
-    
-    <h3>1. Esplanada dos Ministérios</h3>
-    <p>Um cartão-postal de Brasília, a Esplanada abriga edifícios governamentais alinhados em perfeita harmonia. A visita é gratuita, e os destaques incluem o Congresso Nacional, o Palácio do Planalto e o Supremo Tribunal Federal.</p>
-    
-    <h3>2. Catedral Metropolitana Nossa Senhora Aparecida</h3>
-    <p>Projetada por Oscar Niemeyer, esta catedral é famosa por sua estrutura futurista e vitrais deslumbrantes. A entrada é gratuita, e o local proporciona momentos de reflexão e beleza artística.</p>
-    
-    <h3>3. Memorial JK</h3>
-    <p>Este museu homenageia Juscelino Kubitschek, fundador de Brasília. Repleto de objetos pessoais e documentos históricos, o Memorial oferece uma imersão na história da capital. Ingressos: R$ 10 (valores sujeitos a alteração).</p>
-    
-    <h3>4. Parque da Cidade Sarah Kubitschek</h3>
-    <p>Um dos maiores parques urbanos do mundo, perfeito para caminhadas, piqueniques e esportes ao ar livre. Entrada gratuita.</p>
-    
-    <h3>5. Lago Paranoá</h3>
-    <p>Um ponto de encontro para quem busca relaxar ou praticar esportes aquáticos. É possível alugar barcos ou fazer passeios de catamarã. Preços variam conforme a atividade.</p>
-    
-    <h2>Restaurantes</h2>
-    
-    <h3>1. Mangai</h3>
-    <p>Um restaurante especializado em culinária nordestina. Oferece pratos típicos como carne de sol com mandioca e macaxeira gratinada. Uma experiência gastronômica única em um ambiente acolhedor.</p>
-    
-    <h3>2. Restaurante Xique Xique</h3>
-    <p>Famoso pela carne de sol, este é um dos locais mais acessíveis para saborear pratos regionais em Brasília. Ideal para refeições em família ou com amigos.</p>
-    
-    <h3>3. Dom Francisco</h3>
-    <p>Uma opção sofisticada que combina ingredientes locais com alta gastronomia. Destaque para os pratos à base de peixes do cerrado e uma carta de vinhos impressionante.</p>
-    
-    <h2>Dicas Práticas de Viagem</h2>
-    
-    <h3>Melhor Época para Visitar</h3>
-    <p>A estação seca, entre maio e setembro, é ideal para explorar a cidade e aproveitar o céu azul típico da região.</p>
-    
-    <h3>Transporte</h3>
-    <p>Brasília foi projetada para carros, mas aplicativos de transporte e táxis são eficientes. A cidade também conta com uma boa rede de ônibus para locomoção.</p>
-</div>
+<h3>1. Praça dos Três Poderes</h3>
+<p>Local onde estão situados o Palácio do Planalto, o Congresso Nacional e o Supremo Tribunal Federal. É um espaço emblemático que simboliza a harmonia entre os poderes da República. Entrada gratuita.</p>
+
+<h3>2. Catedral Metropolitana de Brasília</h3>
+<p>Com seu design futurista, a catedral projetada por Oscar Niemeyer é uma das obras mais impressionantes da cidade. O jogo de luzes no interior e os vitrais são de tirar o fôlego. Entrada gratuita.</p>
+
+<h3>3. Parque da Cidade Sarah Kubitschek</h3>
+<p>Um dos maiores parques urbanos do mundo, perfeito para caminhadas, passeios de bicicleta ou piqueniques. O espaço oferece lazer ao ar livre e contato com a natureza. Entrada gratuita.</p>
+
+<h3>4. Memorial JK</h3>
+<p>Este museu homenageia Juscelino Kubitschek, fundador de Brasília. Ele exibe objetos pessoais, fotos e documentos históricos, além de ser um marco arquitetônico importante. R$ 20,00 por pessoa.</p>
+
+<h3>5. Torre de TV Digital</h3>
+<p>A Torre de TV Digital oferece uma vista panorâmica espetacular de Brasília. Projetada por Oscar Niemeyer, é uma das melhores formas de admirar a cidade do alto. R$ 10,00 por pessoa</p>
+
+<h2>Restaurantes</h2>
+
+<h3>1. Restaurante Mangai</h3>
+<p>Um dos mais populares da cidade, o Mangai oferece um buffet com pratos típicos do Nordeste, como carne de sol, baião de dois e macaxeira. Ótima relação custo-benefício.</p>
+
+<h3>2. Casa do Cerrado</h3>
+<p>Especializado em sabores regionais, este restaurante apresenta pratos como galinhada e peixes típicos da região. Ideal para experimentar a riqueza gastronômica do Cerrado. Valor acessível.</p>
+
+<h3>3. Dom Francisco</h3>
+<p>Conhecido por sua excelência gastronômica, o Dom Francisco oferece pratos como o famoso bacalhau e opções com ingredientes regionais, preparados com sofisticação e técnica apurada. Alto padrão.</p>
+
+<h2>Dicas Práticas de Viagem</h2>
+
+<h3>Melhor Época para Visitar</h3>
+<p>A melhor época para conhecer Brasília é entre maio e setembro, durante a estação seca, quando os dias são ensolarados e agradáveis, ideais para passeios ao ar livre.</p>
+
+<h3>Transporte</h3>
+<p>Brasília foi planejada para o transporte de carros, mas há boas opções de transporte público, como ônibus e o metrô. Alugar um carro pode facilitar a locomoção, especialmente para visitar atrações mais distantes.</p>
 ` as const
 
 console.info(
@@ -86,7 +80,7 @@ const cities = citiesSchema.parse(JSON.parse(readFileSync(citiesPath, 'utf-8')))
 const llamas: Array<string> = []
 
 for (const c of cities.slice(0, 1)) {
-  const response = await postLlama(c)
+  const response = await generateLlama(c)
   llamas.push(response)
 }
 
@@ -111,7 +105,7 @@ for (const c of citiesWithLlamas) {
 
 console.log('Done!')
 
-async function postLlama(city: City): Promise<string> {
+async function generateLlama(city: City): Promise<string> {
   console.log(
     `Asking Llama to generate content for ${city.name}-${city.region}`,
   )
@@ -125,7 +119,7 @@ async function postLlama(city: City): Promise<string> {
     stream: false,
   }
   const response = await axios.post(llamaUrl, data)
-  const llamaResult = response.data.response
+  const llamaResult = response.data.response.replace('```html', '').replace('```', '')
   console.log(`Llama responded with: ${llamaResult}`)
   return llamaResult
 }

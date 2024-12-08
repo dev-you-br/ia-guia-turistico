@@ -125,11 +125,11 @@ RO,11,00031,Cabixi,5067
 RO,11,00049,Cacoal,86416
 ```
 
-### Converter a Lista de Cidades Brasileiras para JSON
+### Crie a Lista de Cidades Brasileiras em JSON
 
-Crie um arquivo [./src/parse-cities.ts](./src/parse-cities.ts).
+Crie um arquivo [./src/make-cities.ts](./src/make-cities.ts).
 
-Implemente a conversao do arquivo `./resources/cities.csv` para `./resources/cities.json` mapeando os campos como abaixo:
+Implemente a conversao do arquivo [./resources/cities.csv](./resources/cities.csv) para [./resources/cities.json](./resources/cities.json) mapeando os campos como abaixo:
 
 | csv                | json           |
 | ------------------ | -------------- |
@@ -145,7 +145,7 @@ Limite o resultado final para conter apenas as 10 cidades mais populosas.
 Crie um script para converter os arquivos:
 
 ```sh
-npm run parse-cities
+npm run make-cities
 ```
 
 ### Gerar um layout padrao

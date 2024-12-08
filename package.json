@@ -9,7 +9,7 @@
     "make-cities": "tsc && node dist/make-cities.js",
     "make-cities-content": "tsc && node dist/make-cities-content.js",
     "make-index-page": "tsc && node dist/make-index-page.js",
-    "generate-cities-pages": "tsc && node dist/generate-cities-pages.js",
+    "make-cities-pages": "tsc && node dist/make-cities-pages.js",
     "clear-website": "rm -rf ./docs"
   },
   "keywords": [

@@ -183,7 +183,7 @@ npm run make-cities-content
 ### Criar um Layout Padrão
 
 Manualmente, crie um layout padrão para o website.
-Crie os arquivos [./resources/layout.html](./resources/layout.html) e [./resources/styles.css](./resources/styles.css),
+Crie o arquivo [./resources/layout.html](./resources/layout.html) outros arquivos para o layout no diretório [./resources/layout](./resources/layout)
 que conterão o esqueleto das páginas. O conteúdo será inserido posteriormente.
 
 No `layout.html`, inclua:
@@ -194,13 +194,19 @@ No `layout.html`, inclua:
 ### Crie a Página Inicial
 
 Implemente a funcionalidade que cria a página inicial.
-Crie o arquivo [./src/make-index-page.html](./src/make-index-page.ts).
-Copie o [./resources/styles.css](./resources/styles.css) para o [.docs/styles.css](./docs/styles.css).
+Crie o arquivo [./src/make-index-page.ts](./src/make-index-page.ts).
+Copie o [./resources/layout/](./resources/layout/) para [.docs/](./docs/).
 Leia os arquivos
 [./resources/cities.json](./resources/cities.json),
-[./resources/layout.html](./resources/layout.html).
+[./resources/layout/layout.html](./resources/layout/layout.html).
 Crie uma lista de links para cada cidade e injete not layout. Por exemple: `<p><a href="sao_paulo.html">São Paulo</a></p>`.
 Escreva o resultado em [./docs/index.html].
+
+Crie o diretório `./docs`:
+
+```sh
+mkdir docs
+```
 
 Crie um script de execução:
 
@@ -208,34 +214,24 @@ Crie um script de execução:
 npm run make-index-page
 ```
 
-### Gerar Páginas das Cidades: city-x.html
+### Gerar Páginas das Cidades
 
-Implemente a funcionalidade para gerar as páginas das cidades.
-Siga os passos deste guia para criar um servidor Llama rodando localmente: ?????
+Implemente a funcionalidade para criar as páginas das cidades.
+Crie o arquivo [./src/make-cities-pages.html](./src/make-cities-pages.ts).
+Leia os arquivos
+[./resources/cities.json](./resources/cities.json),
+[./resources/layout.html](./resources/layout.html).
+Para cada cidade, leia o conteúdo correspondent do diretório [./resources/content](./resources/content/) e
+injete no layout.
+Escreva o resultado em [./docs/](./docs/).
+Por exemplo, para a cidade `São Paulo`, crie o arquivo `./docs/sao-paulo.html`.
 
-Utilize o seguinte prompt de IA para cada cidade:
-
-```
-Onde fica a cidade de {{CIDADE}}.
-```
-
-Cada cidade deve ser gerada em um arquivo HTML no diretório `./docs`.
-Por exemplo, para a cidade `São Paulo`, gere o arquivo `./docs/sao-paulo.html`.
-
-Crie um script para gerar as páginas das cidades:
+Crie um script de execucão:
 
 ```sh
-npm run generate-cities-pages
+npm run make-cities-pages
 ```
 
 # Referencias
 
 - [How to Setup a TypeScript + Node.js Project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
-
-Leia os arquivos
-[./resources/cities.json](./resources/cities.json),
-[./resources/layout.html](./resources/layout.html).
-Para cada cidade no [./resources/cities.json](./resources/cities.json)
-leia o conteúdo correspondente no diretório [./resources/content](./resources/content/) e
-crie uma página **html** basead no layout.
-Cada arquivo **html** deve ser salvo no diretório [./docs/](./docs).

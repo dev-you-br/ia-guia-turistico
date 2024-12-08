@@ -1,18 +1,25 @@
-import { copyFileSync, readFileSync, writeFileSync } from 'fs'
+import {
+  copyFileSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from 'fs'
 import { citiesSchema } from './schema.js'
+import path from 'path'
+const layoutFileName = 'layout.html' as const
 const citiesPath = './resources/cities.json' as const
-const layoutPath = './resources/layout.html' as const
-const outputPath = './docs/index.html' as const
+const layoutDir = './resources/layout' as const
+const layoutPath = `./resources/layout/${layoutFileName}` as const
+const outputDir = './docs/' as const
 const contentPlaceholder = '{{CONTENT}}' as const
-const stylesInputPath = './resources/styles.css'
-const stylesOutputPath = './docs/styles.css'
 
 console.log(
-  `Reading cities from ${citiesPath}, layout from ${layoutPath}. Writting to ${outputPath}`,
+  `Reading cities from ${citiesPath}, layout from ${layoutPath}. Writting to ${outputDir}`,
 )
 
-console.log(`Copying ${stylesInputPath} to ${stylesOutputPath}`)
-copyFileSync(stylesInputPath, stylesOutputPath)
+console.log(`Copying directory ${layoutDir} to ${outputDir}`)
+copyDirectory(layoutDir, outputDir)
 
 const citiesString = readFileSync(citiesPath, 'utf-8')
 const cities = citiesSchema.parse(JSON.parse(citiesString))
@@ -23,6 +30,17 @@ const citiesPlaceholder = cities
 const citiesDiv = `<div class="cities-links">${citiesPlaceholder}</div>`
 const layout = readFileSync(layoutPath, 'utf-8')
 const output = layout.replace(contentPlaceholder, citiesDiv)
+const outputPath = `${outputDir}/index.html`
 writeFileSync(outputPath, output)
 
 console.log('Done!')
+
+function copyDirectory(src: string, dest: string) {
+  mkdirSync(dest, { recursive: true })
+  const entries = readdirSync(src)
+  for (let entry of entries) {
+    const srcPath = path.join(src, entry)
+    const destPath = path.join(dest, entry)
+    copyFileSync(srcPath, destPath)
+  }
+}

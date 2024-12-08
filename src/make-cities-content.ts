@@ -70,7 +70,7 @@ Aqui um examplo para a cidade de Brasília-DF para a sua referência:
 <p>Brasília foi planejada para o transporte de carros, mas há boas opções de transporte público, como ônibus e o metrô. Alugar um carro pode facilitar a locomoção, especialmente para visitar atrações mais distantes.</p>
 ` as const
 
-console.info(`Reading cities from ${citiesJsonPath}. Writtig to ${outputDir}`)
+console.log(`Reading cities from ${citiesJsonPath}. Writtig to ${outputDir}`)
 
 const cities = citiesSchema.parse(
   JSON.parse(readFileSync(citiesJsonPath, 'utf-8')),

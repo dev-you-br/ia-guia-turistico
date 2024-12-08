@@ -8,10 +8,9 @@
     "prettier": "prettier . --write",
     "make-cities": "tsc && node dist/make-cities.js",
     "make-cities-content": "tsc && node dist/make-cities-content.js",
-    "clear-website": "rm -rf ./docs",
-    "make-website": "mkdir -p docs && cp ./resources/header.jpg ./resources/styles.css ./docs && npm run make-cities && npm run generate-index-page && npm run generate-cities-pages",
-    "generate-index-page": "tsc && node dist/generate-index-page.js",
-    "generate-cities-pages": "tsc && node dist/generate-cities-pages.js"
+    "make-index-page": "tsc && node dist/make-index-page.js",
+    "generate-cities-pages": "tsc && node dist/generate-cities-pages.js",
+    "clear-website": "rm -rf ./docs"
   },
   "keywords": [
     "ai",

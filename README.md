@@ -133,9 +133,9 @@ RO,11,00049,Cacoal,86416
 
 ### Crie a Lista de Cidades Brasileiras em JSON
 
-Crie um arquivo [./src/make-cities.ts](./src/make-cities.ts).
-
-Implemente a conversao do arquivo [./resources/cities.csv](./resources/cities.csv) para [./resources/cities.json](./resources/cities.json) mapeando os campos como abaixo:
+Implemente a funcionalidade que cria a lista de cidades em **json**.
+Crie o arquivo [./src/make-cities.ts](./src/make-cities.ts).
+Leia o arquivo [./resources/cities.csv](./resources/cities.csv) e converta em [./resources/cities.json](./resources/cities.json) mapeando os campos como abaixo:
 
 | csv                | json           |
 | ------------------ | -------------- |
@@ -148,8 +148,6 @@ Normalize o conteúdo do campo `nameNormalized`. Por example, a cidade `Sao Paul
 
 Limite o resultado final para conter apenas as 10 cidades mais populosas.
 
-Crie um script para converter os arquivos:
-
 ```sh
 npm run make-cities
 ```
@@ -158,13 +156,13 @@ npm run make-cities
 
 Siga os passos do vido anterior ??? para iniciar o servidor Llama em sua máquina.
 
-### Crie o Conteúdo Turístico das Cidades: content.json
+### Crie o Conteúdo Turístico das Cidades
 
-Crie um arquivo [./src/make-cities-content.ts](./src/make-cities-content.ts).
-Implemente a funcionalidade para criar o guia turístico das cidades.
+Implemente a funcionalidade que cria o guia turístico de cada cidade.
+Crie o arquivo [./src/make-cities-content.ts](./src/make-cities-content.ts).
 Leia or arquivo [./resources/cities.json](./resources/cities.json) e gere um arquivo `./resources/content/city-x.html` para cada cidade.
-Por exemplo, para a cidade `São Paulo`, gere o arquivo `./resources/content/sao-paulo.html`.
-Utilize o seguinte prompt de inteligência artificial para cada cidade:
+Por exemplo, para a cidade `São Paulo`, escreva o arquivo `./resources/content/sao-paulo.html`.
+Utilize o seguinte prompt de inteligência artificial:
 
 ```
 Onde fica a cidade de {{CIDADE}}.
@@ -176,19 +174,16 @@ Crie o diretório `./resources/content`:
 mkdir resources/content
 ```
 
-Crie um script para criar o conteúdo das cidades:
+Crie um script de execução:
 
 ```sh
 npm run make-cities-content
 ```
 
-```sh
-npm install axios
-```
+### Criar um Layout Padrão
 
-### Gerar um layout padrao
-
-Crie um novo arquivo [./resources/layout.html](./resources/layout.html) e [./resources/styles.css](./resources/styles.css),
+Manualmente, crie um layout padrão para o website.
+Crie os arquivos [./resources/layout.html](./resources/layout.html) e [./resources/styles.css](./resources/styles.css),
 que conterão o esqueleto das páginas. O conteúdo será inserido posteriormente.
 
 No `layout.html`, inclua:
@@ -196,23 +191,21 @@ No `layout.html`, inclua:
 - O texto `{{CONTENT}}` usado como uma marcação para ser substituído posteriormente.
 - Link para a página `./index.html`
 
-### Gerar Página Inicial: index.html
+### Crie a Página Inicial
 
-Implemente a funcionalidade que criará a página inicial, salvando o resultado em [./docs/index.html](./docs/index.html).
-Leia os arquivos [./resources/layout.html](./resources/layout.html) e [./resources/cities.json](./resources/cities.json).
-Transforme as cidades em `cities.json` em links para suas respectivas páginas.
-Por exemplo, a cidade `São Paulo` terá um link para a página `./sao-paulo.html`.
+Implemente a funcionalidade que cria a página inicial.
+Crie o arquivo [./src/make-index-page.html](./src/make-index-page.ts).
+Copie o [./resources/styles.css](./resources/styles.css) para o [.docs/styles.css](./docs/styles.css).
+Leia os arquivos
+[./resources/cities.json](./resources/cities.json),
+[./resources/layout.html](./resources/layout.html).
+Crie uma lista de links para cada cidade e injete not layout. Por exemple: `<p><a href="sao_paulo.html">São Paulo</a></p>`.
+Escreva o resultado em [./docs/index.html].
 
-Crie o diretório `./docs/`:
-
-```sh
-mkdir docs
-```
-
-Crie um script para gerar a página inicial:
+Crie um script de execução:
 
 ```sh
-npm run generate-index-page
+npm run make-index-page
 ```
 
 ### Gerar Páginas das Cidades: city-x.html
@@ -238,3 +231,11 @@ npm run generate-cities-pages
 # Referencias
 
 - [How to Setup a TypeScript + Node.js Project](https://khalilstemmler.com/blogs/typescript/node-starter-project/)
+
+Leia os arquivos
+[./resources/cities.json](./resources/cities.json),
+[./resources/layout.html](./resources/layout.html).
+Para cada cidade no [./resources/cities.json](./resources/cities.json)
+leia o conteúdo correspondente no diretório [./resources/content](./resources/content/) e
+crie uma página **html** basead no layout.
+Cada arquivo **html** deve ser salvo no diretório [./docs/](./docs).

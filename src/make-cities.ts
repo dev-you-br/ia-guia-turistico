@@ -7,7 +7,7 @@ const inputPath = './resources/cities.csv' as const
 const outputPath = './resources/cities.json' as const
 const limit = 10 as const
 
-console.info(
+console.log(
   `Reading from ${inputPath}. Writting to ${outputPath} with a limit of ${limit}`,
 )
 
@@ -49,4 +49,4 @@ const parseToJsonFile = (citiesToWrite: Array<City>) => {
   })
 }
 
-console.info(`Done!`)
+console.log(`Done!`)

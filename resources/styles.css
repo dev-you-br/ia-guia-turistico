@@ -34,7 +34,7 @@ section {
   flex: 1;
   display: flex;
   flex-flow: column nowrap;
-  max-width: 500px;
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -50,24 +50,32 @@ section {
   min-height: 350px;
   max-width: 100%;
   background: url('./header.jpg');
-  border-bottom: 2px solid #164b7d;
   align-items: center;
 }
 
 .header-item {
   display: flex;
   flex-flow: column;
-  max-width: 500px;
+  max-width: 1200px;
   width: 100%;
+  box-shadow: 0px 5px 5px rgb(231, 231, 231);
 }
 
-.header-item-title a {
+.header-item-title {
   flex: 1;
   font-weight: bolder;
   font-size: 4rem;
   color: white;
-  text-shadow: 4px 4px 7px rgb(36, 36, 192);
-  margin-top: 6rem;
+  text-shadow: 4px 4px 7px rgb(43, 43, 73);
+  margin: 6rem 0 0 3rem;
+  text-decoration: none;
+}
+
+.header-item-subtitle {
+  font-size: 1.5rem;
+  color: black;
+  text-shadow: 0px 3px 5px white;
+  margin: 1rem 0 0 3rem;
   text-decoration: none;
 }
 
@@ -76,6 +84,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: end;
+  border-bottom: 2px solid #f5a476;
 }
 
 .header-item-cities a {
@@ -84,24 +93,23 @@ section {
   font-weight: bold;
   font-size: 1.25em;
   padding: 0.5em 1em 0.5em 1em;
-  border: #164b7d solid 2px;
-  border-bottom: 2px solid #fdfdfd;
-  position: relative;
-  top: 2px;
-  color: #161616;
+  margin-bottom: 0.25rem;
+  border: 2px solid #f5a476;
+  border-radius: 8px;
+  color: #333;
+  box-shadow: 2px 2px 4px silver;
 }
 
 .header-item-cities a:hover {
-  background-color: azure;
-  border-bottom: 2px solid #333;
+  background-color: aliceblue;
 }
 
 .header-item-cities a:active {
-  background-color: cyan;
+  background-color: lightblue;
 }
 
 .footer-container {
-  background-color: #164b7d;
+  background-color: #348992;
   color: white;
   min-width: 100%;
 }
@@ -122,6 +130,7 @@ section {
 
 .content {
   display: block;
+  margin-top: 1.5rem;
   padding: 0rem 1rem 0rem 1rem;
   color: #333;
 }

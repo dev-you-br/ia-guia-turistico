@@ -7,7 +7,7 @@
   "scripts": {
     "prettier": "prettier . --write",
     "clear-website": "rm -rf ./docs",
-    "make-website": "mkdir docs && cp ./resources/header.jpg ./resources/styles.css ./docs && npm run parse-cities && npm run generate-index-page && npm run generate-cities-pages",
+    "make-website": "mkdir -p docs && cp ./resources/header.jpg ./resources/styles.css ./docs && npm run parse-cities && npm run generate-index-page && npm run generate-cities-pages",
     "parse-cities": "tsc && node dist/parse-cities.js",
     "generate-index-page": "tsc && node dist/generate-index-page.js",
     "generate-cities-pages": "tsc && node dist/generate-cities-pages.js"

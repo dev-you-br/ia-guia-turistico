@@ -113,7 +113,7 @@ console.log('Done!')
 
 async function postLlama(city: City): Promise<string> {
   console.log(
-    `Asking Llama to generate contento for ${city.name}-${city.region}`,
+    `Asking Llama to generate content for ${city.name}-${city.region}`,
   )
   const prompt = promptTemplate
     .replace('{{NAME}}', city.name)

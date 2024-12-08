@@ -3,10 +3,9 @@ import axios from 'axios'
 import { citiesSchema, City } from './schema.js'
 import { zip } from 'lodash-es'
 
-const citiesPath = './resources/cities.json'
-const outputDir = './docs'
+const citiesJsonPath = './resources/cities.json'
+const outputDir = './resources/content'
 const llamaUrl = 'http://localhost:11434/api/generate'
-const layoutPath = './resources/layout.html' as const
 const promptTemplate = `
 Crie um guia turístico para a cidade de {{NAME}}-{{REGION}}, Brasil, seguindo estas especificações:
 
@@ -71,21 +70,19 @@ Aqui um examplo para a cidade de Brasília-DF para a sua referência:
 <p>Brasília foi planejada para o transporte de carros, mas há boas opções de transporte público, como ônibus e o metrô. Alugar um carro pode facilitar a locomoção, especialmente para visitar atrações mais distantes.</p>
 ` as const
 
-console.info(
-  `Reading layout from ${layoutPath} and cities from ${citiesPath}. Writtig to ${outputDir}`,
+console.info(`Reading cities from ${citiesJsonPath}. Writtig to ${outputDir}`)
+
+const cities = citiesSchema.parse(
+  JSON.parse(readFileSync(citiesJsonPath, 'utf-8')),
 )
 
-const cities = citiesSchema.parse(JSON.parse(readFileSync(citiesPath, 'utf-8')))
-
 const llamas: Array<string> = []
-
 for (const c of cities.slice(0, 1)) {
   const response = await generateLlama(c)
   llamas.push(response)
 }
 
 const citiesLlamasZip = zip(cities, llamas)
-
 const citiesWithLlamas = citiesLlamasZip.map((z) => ({
   name: z[0]?.name ?? '',
   region: z[0]?.region ?? '',
@@ -93,15 +90,13 @@ const citiesWithLlamas = citiesLlamasZip.map((z) => ({
   llama: z[1] ?? '',
 }))
 
-const layout = readFileSync(layoutPath, 'utf-8')
-for (const c of citiesWithLlamas) {
-  const cityContent = `<h1>${c.name}</h1><div>${c.llama}</div>`
+citiesWithLlamas.forEach((c) => {
+  const cityContent = `<div>${c.llama}</div>`
   const outputPath = `${outputDir}/${c.nameNormalized}.html`
-  const output = layout.replace('{{CONTENT}}', cityContent)
-  writeFile(outputPath, output, (err) => {
+  writeFile(outputPath, cityContent, (err) => {
     if (err) throw err
   })
-}
+})
 
 console.log('Done!')
 

@@ -78,6 +78,12 @@ Installe a dependencia `csv-parser` para ler arquivos **csv**:
 npm install csv-parser
 ```
 
+Installe a dependencia `axior` para requesiões **http**:
+
+```sh
+npm install axios
+```
+
 Crie um diretorio `src`:
 
 ```sh
@@ -148,6 +154,38 @@ Crie um script para converter os arquivos:
 npm run make-cities
 ```
 
+### Inicie o Servidor Llama
+
+Siga os passos do vido anterior ??? para iniciar o servidor Llama em sua máquina.
+
+### Crie o Conteúdo Turístico das Cidades: content.json
+
+Crie um arquivo [./src/make-cities-content.ts](./src/make-cities-content.ts).
+Implemente a funcionalidade para criar o guia turístico das cidades.
+Leia or arquivo [./resources/cities.json](./resources/cities.json) e gere um arquivo `./resources/content/city-x.html` para cada cidade.
+Por exemplo, para a cidade `São Paulo`, gere o arquivo `./resources/content/sao-paulo.html`.
+Utilize o seguinte prompt de inteligência artificial para cada cidade:
+
+```
+Onde fica a cidade de {{CIDADE}}.
+```
+
+Crie o diretório `./resources/content`:
+
+```sh
+mkdir resources/content
+```
+
+Crie um script para criar o conteúdo das cidades:
+
+```sh
+npm run make-cities-content
+```
+
+```sh
+npm install axios
+```
+
 ### Gerar um layout padrao
 
 Crie um novo arquivo [./resources/layout.html](./resources/layout.html) e [./resources/styles.css](./resources/styles.css),
@@ -195,10 +233,6 @@ Crie um script para gerar as páginas das cidades:
 
 ```sh
 npm run generate-cities-pages
-```
-
-```sh
-npm install axios
 ```
 
 # Referencias

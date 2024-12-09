@@ -1,7 +1,7 @@
-import { readFileSync, writeFile } from 'fs'
 import axios from 'axios'
-import { citiesSchema, City } from './schema.js'
+import { readFileSync, writeFileSync } from 'fs'
 import { zip } from 'lodash-es'
+import { citiesSchema, City } from './schema.js'
 
 type CityWithLlama = {
   name: string
@@ -13,24 +13,22 @@ const citiesJsonPath = './resources/cities.json'
 const outputDir = './resources/content'
 const llamaUrl = 'http://localhost:11434/api/generate'
 const promptTemplate = `
-Responda em html básico utilizando apenas os elementos de typografia: <h1>, <h2>, <h3> e <p>.
-
 Crie um roteiro turístico bem detalhado e engajado para a cidade de {{NAME}}-{{REGION}}, Brasil, seguindo estas especificações:
 
 Introdução:
 Apresente a cidade destacando sua importância histórica e cultural.
 
 Atrações turísticas:
-Inclua cinco atrações turísticas, sendo algumas gratuitas e outras pagas (inclua o valor quando pagas). Descreva cada atração em detalhes, destacando o que a torna especial.
+Inclua cinco atrações turísticas, sendo algumas gratuitas e outras pagas (inclua o valor quando pagas). Descreva cada atração detalhadamente, abordando o que a torna especial e o que os visitantes podem esperar ao visitá-la.
 
 Restaurantes:
-Inclua três restaurantes com pratos típicos da culinária local e regional. Sendo dois restaurante acessível e um sofisticado.
+Apresente três restaurantes, com uma variedade de estilos com pratos típicos da culinária local. Sendo dois restaurante acessíveis e um sofisticado.
 
 Dicas de viagem:
 Aborde temas como a melhor época para visitar e transporte na cidade.
 
 Responda em html embutido sem os elementos <html>, <head> ou <body> pois o resultado será inserido em um página existente.
-Responda em html os elementos: <h1>, <h2>, <h3> e <p>.
+Responda em html apenas com os elementos: <h1>, <h2>, <h3> e <p>.
 ` as const
 
 console.log(`Reading cities from ${citiesJsonPath}. Writtig to ${outputDir}`)
@@ -45,7 +43,7 @@ for (const c of cities) {
   llamas.push(response)
 }
 
-zip(cities, llamas).map(toCityWithLlama).forEach(writeToFile)
+zip(cities, llamas).map(toCityWithLlama).forEach(writeContent)
 
 console.log('Done!')
 
@@ -59,12 +57,10 @@ function toCityWithLlama(
   }
 }
 
-function writeToFile(city: CityWithLlama): void {
+function writeContent(city: CityWithLlama): void {
   const cityContent = `<div>${city.llama}</div>`
   const outputPath = `${outputDir}/${city.nameNormalized}.html`
-  writeFile(outputPath, cityContent, (err) => {
-    if (err) throw err
-  })
+  writeFileSync(outputPath, cityContent)
 }
 
 async function generateLlama(city: City): Promise<string> {
@@ -83,9 +79,15 @@ async function generateLlama(city: City): Promise<string> {
   const response = await axios.post(llamaUrl, data)
   const llamaResult = response.data.response as string
   console.log(`Llama responded with: ${llamaResult}`)
+
+  if (!llamaResult.includes('<h1>') && !llamaResult.includes('<p>')) {
+    console.log('Llama result does not look like html, re-generating')
+    return await generateLlama(city)
+  }
+
   if (llamaResult.includes('```html')) {
     return llamaResult.substring(
-      llamaResult.indexOf('```'),
+      llamaResult.indexOf('```html') + 7  ,
       llamaResult.lastIndexOf('```'),
     )
   }

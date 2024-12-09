@@ -1,6 +1,6 @@
 import csv from 'csv-parser'
+import { createReadStream, writeFileSync } from 'fs'
 import { z } from 'zod'
-import { createReadStream, writeFile } from 'fs'
 import { City } from './schema.js'
 
 const inputPath = './resources/cities.csv' as const
@@ -44,9 +44,7 @@ const parseToJsonFile = (citiesToWrite: Array<City>) => {
     .sort((a, b) => b.population - a.population)
     .slice(0, limit)
   const output = JSON.stringify(citiesSorted, null, 2)
-  writeFile(outputPath, output, (err) => {
-    if (err) throw err
-  })
+  writeFileSync(outputPath, output)
 }
 
 console.log(`Done!`)

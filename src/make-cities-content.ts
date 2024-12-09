@@ -1,13 +1,53 @@
 import axios from 'axios'
 import { readFileSync, writeFileSync } from 'fs'
 import { citiesSchema, City } from './schema.js'
+import { Marked } from '@ts-stack/markdown'
 const citiesJsonPath = './resources/cities.json'
 const outputDir = './resources/content'
 const llamaUrl = 'http://localhost:11434/api/generate'
 
-const proptResponseInHtml = `Responda em HTML.
-Utilize apenas os elementos: <h1>, <h2> e <p>.
-Exclua elementos externos como <html>, <head>, ou <body>, pois o conteúdo será inserido em uma página existente.`.trim()
+const makePrompt = (city: City) => `
+Escreva um roteiro turístico detalhado para a cidade de ${city.name}-${city.region} com a seguinte estrutura e formato:
+
+# Introdução  
+Apresente a cidade destacando:  
+- Sua importância histórica e cultural.  
+- Principais características geográficas.  
+- Um resumo sobre o que a torna única e atrativa para visitantes.  
+
+# Atrações  
+Descreva cinco atrações turísticas, com um equilíbrio entre opções gratuitas e pagas.  
+Para cada atração, inclua:  
+1. Características ou histórias que a diferenciam indicando porque a atrção é especial.
+2. Atividades, pontos de interesse, e experiências que o local oferece para o visitante entender o que esperar da atração.
+3. Preços (se aplicável), horários de funcionamento, e dias de visitação.  
+
+Cada atração deve ter três parágrafos bem elaborados.
+
+---
+
+# Restaurantes
+Indique três restaurantes na cidade:  
+- Dois restaurantes acessíveis com pratos típicos da culinária local, enfatizando sabores autênticos.  
+- Um restaurante sofisticado que ofereça uma experiência gastronômica premium.  
+
+Para cada restaurante, mencione:  
+- Especialidades do cardápio.  
+- Ambiente e estilo.  
+- Faixa de preço e horários de funcionamento.  
+
+---
+
+# Dicas de Viagem
+Inclua dicas úteis para os viajantes:  
+1. Sugira a **melhor época para visitar** a cidade, considerando clima, eventos ou festivais.  
+2. Inclua recomendações sobre vestuário, transporte e segurança.  
+3. Dicas exclusivas para melhorar a experiência do visitante.  
+
+---
+Garanta a clareza, organização e detalhes em todas as seções.  
+Responda utilizando o formato MARKDOWN.
+`
 
 console.log(`Reading cities from ${citiesJsonPath}. Writtig to ${outputDir}`)
 
@@ -16,85 +56,32 @@ const cities = citiesSchema.parse(
 )
 
 for (const city of cities) {
-  const content: Array<string> = []
-  content.push(await generateIntro(city))
-  content.push(await generateAtractions(city))
-  content.push(await generateRestaurants(city))
-  content.push(await generateHints(city))
-  writeContent(city, content.join('\n'))
+  const prompt = makePrompt(city)
+  console.log(`Asking Llama: ${prompt}`)
+  const content = await generateLlama(makePrompt(city))
+  console.log(`Llama response: ${content}`)
+  writeContent(city, content)
 }
 
 console.log('Done!')
 
-async function generateIntro(city: City) {
-  const prompt = `Escreva uma introdução de dois parágrafos para a cidade de ${city.name}-${city.region} para um roteiro turístico.
-  ${proptResponseInHtml}`.trim()
-  return await generateLlamaRetry(prompt)
-}
-
-async function generateAtractions(city: City) {
-  const prompt = `Descreva cinco atrações turísticas para de ${city.name}-${city.region}, sendo algumas gratuitas e outras pagas.
-  Escreva três parágrafos: primeiro descreve o que a torna especial; segundo o que os visitantes podem esperar ao visitá-la; terceiro se a atração é gratuíta ou paga e qual os dias e horário para visitação.
-  ${proptResponseInHtml}`.trim()
-  return await generateLlamaRetry(prompt)
-}
-
-async function generateRestaurants(city: City) {
-  const prompt = `Descreva três restaurantes para a cidade de ${city.name}-${city.region}, com uma variedade de estilos.
-  Inclua dois restaurantes acessíveis, com pratos típicos da culinária local, e um restaurante sofisticado que ofereça uma experiência mais requintada.
-  ${proptResponseInHtml}`.trim()
-  return await generateLlamaRetry(prompt)
-}
-
-async function generateHints(city: City) {
-  const prompt = `Descreva dicas de viagem para a cidade de ${city.name}-${city.region} para um roteiro turístico.
-  Sugira a melhor época para visitar a cidade, considerando clima, eventos ou festivais especiais.
-  Dê dicas sobre transporte local.
-  ${proptResponseInHtml}`.trim()
-  return await generateLlamaRetry(prompt)
-}
-
-async function generateLlamaRetry(prompt: string) {
-  const llama = await generateLlama(prompt)
-  const llamaClean = clearLlama(llama)
-
-  if (
-    llamaClean.includes('html') ||
-    !llamaClean.includes('<h1>') ||
-    !llamaClean.includes('<p>')
-  ) {
-    console.log('Llama result does not look like the html we want.', llamaClean)
-    return await generateLlama(prompt)
-  }
-  return llama
-}
-
-function clearLlama(text: string) {
-  if (text.includes('```html')) {
-    return clearLlama(
-      text.substring(text.indexOf('```html') + 7, text.lastIndexOf('```')),
-    )
-  }
-  if (text.includes('<body>')) {
-    return clearLlama(
-      text.substring(text.indexOf('<body>') + 6, text.indexOf('</body>')),
-    )
-  }
-  return text
-}
-
 async function generateLlama(prompt: string): Promise<string> {
-  console.log(
-    `Asking Llama to generate content for:
-    ${prompt}`,
-  )
   const data = {
     model: 'llama3.2',
     prompt,
     stream: false,
   }
   const response = await axios.post(llamaUrl, data)
-  return response.data.response as string
+  return parseLlama(response.data.response as string)
+}
+
+function parseLlama(text: string) {
+  if (text.includes('```')) {
+    return parseLlama(
+      text.substring(text.indexOf('```') + 7, text.lastIndexOf('```')),
+    )
+  }
+  return Marked.parse(text)
 }
 
 function writeContent(city: City, content: string): void {

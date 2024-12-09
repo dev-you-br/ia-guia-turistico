@@ -39,6 +39,10 @@ h2 {
 h3 {
   font-size: 16pt;
 }
+
+ul {
+  padding: 1em 1em 1em 1em;
+}
 /* End of typography */
 
 .layout-body {
@@ -51,6 +55,7 @@ h3 {
   color: #1c1c1c;
   background-color: #fdfdfd;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .layout-container {

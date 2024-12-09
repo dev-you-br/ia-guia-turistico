@@ -90,6 +90,11 @@ Crie um diretorio `src`:
 mkdir src
 ```
 
+Instale a dependência `ts-stack/markdown` para converter markdown para html.
+```sh
+npm install @ts-stack/markdown --save
+```
+
 ## Setup prettier (optional)
 
 Instale `prettier`:

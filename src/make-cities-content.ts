@@ -29,7 +29,7 @@ console.log('Done!')
 
 async function generateIntro(city: City) {
   const prompt = `
-  Escreva uma introdução de dois parágrafos para a cidade de ${city.name}-${city.region} para um roteiro turístico.
+  Escreva uma introdução de dois parágrafos para a cidade ${city.name}-${city.region} para um roteiro turístico.
   ${proptResponseInHtml}
   `
   return await generateLlamaRetry(prompt)
@@ -37,9 +37,8 @@ async function generateIntro(city: City) {
 
 async function generateAtractions(city: City) {
   const prompt = `
-  Descreva cinco atrações turísticas para a cidade de ${city.name}-${city.region}, sendo algumas gratuitas e outras pagas.
-  Escreva três parágrafos para cada atração abordando o que a torna especial e o que os visitantes podem esperar ao visitá-la.
-  No último parágrafo indique se a atração é gratuíta ou paga e qual os dias e horário para visitação.
+  Descreva cinco atrações turísticas para ${city.name}-${city.region}, sendo algumas gratuitas e outras pagas.
+  Escreva três parágrafos: primeiro descreve o que a torna especial; segundo o que os visitantes podem esperar ao visitá-la; terceiro se a atração é gratuíta ou paga e qual os dias e horário para visitação.
   ${proptResponseInHtml}
   `
   return await generateLlamaRetry(prompt)

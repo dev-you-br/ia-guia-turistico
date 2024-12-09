@@ -5,7 +5,7 @@ import { City } from './schema.js'
 
 const inputPath = './resources/cities.csv' as const
 const outputPath = './resources/cities.json' as const
-const limit = 10 as const
+const limit = 1 as const
 
 console.log(
   `Reading from ${inputPath}. Writting to ${outputPath} with a limit of ${limit}`,

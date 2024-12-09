@@ -13,14 +13,24 @@ const citiesJsonPath = './resources/cities.json'
 const outputDir = './resources/content'
 const llamaUrl = 'http://localhost:11434/api/generate'
 const promptTemplate = `
-Crie um roteiro turístico detalhado para a cidade de {{NAME}}-{{REGION}}, Brasil, como a seguir:
-
-Introdução: Apresente a cidade, destacando sua importância histórica, cultural e arquitetônica.
-Atrações turísticas: Inclua cinco atrações turísticas, sendo algumas gratuitas e outras pagas (inclua o valor quando pagas). Destaque o que torna cada atração especial.
-Restaurantes: Inclua três restaurantes com pratos típicos da culinária local e regional. Sendo dois restaurantes acessíveis e um sofisticado.
-Dicas de viagem: Aborde temas como a melhor época para visitar e transporte na cidade.
-
 Responda em html básico utilizando apenas os elementos de typografia: <h1>, <h2>, <h3> e <p>.
+
+Crie um roteiro turístico bem detalhado e engajado para a cidade de {{NAME}}-{{REGION}}, Brasil, seguindo estas especificações:
+
+Introdução:
+Apresente a cidade destacando sua importância histórica e cultural.
+
+Atrações turísticas:
+Inclua cinco atrações turísticas, sendo algumas gratuitas e outras pagas (inclua o valor quando pagas). Descreva cada atração em detalhes, destacando o que a torna especial.
+
+Restaurantes:
+Inclua três restaurantes com pratos típicos da culinária local e regional. Sendo dois restaurante acessível e um sofisticado.
+
+Dicas de viagem:
+Aborde temas como a melhor época para visitar e transporte na cidade.
+
+Responda em html embutido sem os elementos <html>, <head> ou <body> pois o resultado será inserido em um página existente.
+Responda em html os elementos: <h1>, <h2>, <h3> e <p>.
 ` as const
 
 console.log(`Reading cities from ${citiesJsonPath}. Writtig to ${outputDir}`)

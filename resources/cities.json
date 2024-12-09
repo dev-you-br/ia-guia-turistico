@@ -4,59 +4,5 @@
     "nameNormalized": "sao-paulo",
     "region": "SP",
     "population": 12396372
-  },
-  {
-    "name": "Rio de Janeiro",
-    "nameNormalized": "rio-de-janeiro",
-    "region": "RJ",
-    "population": 6775561
-  },
-  {
-    "name": "Brasília",
-    "nameNormalized": "brasilia",
-    "region": "DF",
-    "population": 3094325
-  },
-  {
-    "name": "Salvador",
-    "nameNormalized": "salvador",
-    "region": "BA",
-    "population": 2900319
-  },
-  {
-    "name": "Fortaleza",
-    "nameNormalized": "fortaleza",
-    "region": "CE",
-    "population": 2703391
-  },
-  {
-    "name": "Belo Horizonte",
-    "nameNormalized": "belo-horizonte",
-    "region": "MG",
-    "population": 2530701
-  },
-  {
-    "name": "Manaus",
-    "nameNormalized": "manaus",
-    "region": "AM",
-    "population": 2255903
-  },
-  {
-    "name": "Curitiba",
-    "nameNormalized": "curitiba",
-    "region": "PR",
-    "population": 1963726
-  },
-  {
-    "name": "Recife",
-    "nameNormalized": "recife",
-    "region": "PE",
-    "population": 1661017
-  },
-  {
-    "name": "Goiânia",
-    "nameNormalized": "goiania",
-    "region": "GO",
-    "population": 1555626
   }
 ]

@@ -140,20 +140,19 @@ ul {
   color: white;
   min-width: 100%;
   margin-top: 1em;
+  max-height: 5em;
 }
 
 .footer-item {
   padding: 1em 0 1em 0;
-}
-
-.footer-item p {
+  line-height: 1.5em;
   text-align: center;
-  margin: 0.5em;
 }
 
 .cities-links {
   text-align: center;
   line-height: 1.5em;
+  margin-top: 1em;
 }
 
 .content {

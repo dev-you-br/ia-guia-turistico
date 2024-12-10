@@ -24,7 +24,6 @@ copyDirectory(layoutDir, outputDir)
 const citiesString = readFileSync(citiesPath, 'utf-8')
 const cities = citiesSchema.parse(JSON.parse(citiesString))
 const citiesPlaceholder = cities
-  .slice(0, 10)
   .map((c) => `<p><a href="./${c.nameNormalized}.html">${c.name}</a><p>`)
   .join('\n')
 const citiesDiv = `<div class="cities-links">${citiesPlaceholder}</div>`

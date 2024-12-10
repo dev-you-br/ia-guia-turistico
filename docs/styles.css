@@ -1,0 +1,162 @@
+/* Start of css reset */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+/* End of css reset */
+/* Start of typography */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+h1 {
+  font-size: 20pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 16pt;
+}
+
+ul {
+  padding: 1em 1em 1em 1em;
+}
+/* End of typography */
+
+.layout-body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #1c1c1c;
+  background-color: #fdfdfd;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.layout-container {
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.layout-item {
+  flex: 1;
+}
+
+.layout-grow {
+  flex: 5;
+}
+
+.header-container {
+  min-height: 350px;
+  max-width: 100%;
+  background: url('./header.jpg');
+  align-items: center;
+  border-bottom: 4px solid #f5a476;
+}
+
+.header-item {
+  display: flex;
+  flex-flow: column;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.header-item-title {
+  flex: 1;
+  font-weight: bolder;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 4px 4px 7px rgb(43, 43, 73);
+  margin: 6rem 0 0 3rem;
+  text-decoration: none;
+}
+
+.header-item-subtitle {
+  font-size: 1.5rem;
+  color: black;
+  text-shadow: 0px 3px 5px white;
+  margin: 1rem 0 0 3rem;
+  text-decoration: none;
+}
+
+.header-item-cities {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.header-item-cities a {
+  text-decoration: none;
+  background-color: #fdfdfd;
+  font-weight: bold;
+  font-size: 1.25em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin-bottom: 0.25rem;
+  border: 2px solid #f5a476;
+  border-radius: 8px;
+  color: #333;
+  box-shadow: 2px 2px 4px silver;
+}
+
+.header-item-cities a:hover {
+  background-color: aliceblue;
+}
+
+.header-item-cities a:active {
+  background-color: lightblue;
+}
+
+.footer-container {
+  background-color: #348992;
+  color: white;
+  min-width: 100%;
+  margin-top: 1em;
+  max-height: 5em;
+}
+
+.footer-item {
+  padding: 1em 0 1em 0;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.cities-links {
+  text-align: center;
+  line-height: 1.5em;
+  margin-top: 1em;
+}
+
+.content {
+  display: block;
+  padding: 0rem 1rem 0rem 1rem;
+  color: #333;
+}

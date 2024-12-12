@@ -113,8 +113,6 @@ code {
 }
 /*End of Typography */
 
-
-
 .layout-body {
   display: flex;
   flex-flow: column nowrap;
@@ -215,13 +213,12 @@ code {
 .footer-item {
   padding: 1em 0 1em 0;
   text-align: center;
-  font-size: medium ;
+  font-size: medium;
 }
 
 .footer-item p {
   margin: 0;
 }
-
 
 .cities-links {
   text-align: center;

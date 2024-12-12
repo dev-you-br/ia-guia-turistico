@@ -1,19 +1,20 @@
 # IA Guia Turístico
 
-Neste projeto, vamos desenvolver tudo do zero. Será uma excelente oportunidade para aprimorarmos nossos conhecimentos e utilizarmos como base para futuros projetos.
+Neste projeto, desenvolveremos tudo do zero. Será uma excelente oportunidade para aprimorarmos nossos conhecimentos e utilizarmos como base para futuros projetos.
 
-Vamos construir um site que oferece guias turísticos para diversas cidades brasileiras, criado com a tecnologia de inteligência artificial (IA) do Llama, TypeScript e hospedado no GitHub Pages.
+Vamos construir um site que oferece guias turísticos para diversas cidades brasileiras, utilizando inteligência artificial (IA) com a tecnologia Llama, TypeScript e hospedado no GitHub Pages.
 
 ## Demo
-Este projeto estah hospedado pelo github pages: https://dev-you-br.github.io/ia-guia-turisticojjj
+
+Este projeto está hospedado no GitHub Pages: https://dev-you-br.github.io/ia-guia-turistico
 
 ## Criando um Repositório no GitHub
 
 Crie um novo repositório no GitHub:
 
-![Crie um Repositorio no Guithub](./resources/create-github-repository.png)
+![Crie um Repositório no GitHub](./resources/create-github-repository.png)
 
-Clone em sua máquina:
+Clone o repositório na sua máquina local:
 
 ```sh
 git clone git@github.com:dev-you-br/ia-guia-turistico.git
@@ -21,7 +22,7 @@ git clone git@github.com:dev-you-br/ia-guia-turistico.git
 
 ## Preparar o Projeto
 
-Crie um arquivo `.nvmrc` e guarde a versão do Node que vamos utilizar no projeto:
+Crie um arquivo `.nvmrc` para definir a versão do Node usada no projeto:
 
 ```sh
 node -v > .nvmrc
@@ -33,37 +34,22 @@ Outros desenvolvedores podem carregar a mesma versão do Node com:
 nvm use
 ```
 
-Inicialize o projeto:
+Inicialize o projeto com npm:
 
 ```sh
 npm init -y
 ```
 
-Instale Typescript:
+Instale o TypeScript e suas dependências:
 
 ```sh
 npm install typescript --save-dev
-```
-
-Instale Node types:
-
-```sh
 npm install @types/node --save-dev
-```
-
-Instale Typescript tipos recomendados para Node:
-
-```sh
 npm install --save-dev @tsconfig/node22
-```
-
-Instale configurações estritas:
-
-```sh
 npm install --save-dev @tsconfig/strictest
 ```
 
-Configure os tipos recomendados pare Node22:
+Configure o `tsconfig.json`:
 
 ```sh
 echo '{
@@ -75,41 +61,41 @@ echo '{
 }' > tsconfig.json
 ```
 
-Installe a dependencia `csv-parser` para ler arquivos **csv**:
+Instale `csv-parser` para leitura de arquivos CSV:
 
 ```sh
 npm install csv-parser
 ```
 
-Installe a dependencia `axior` para requesiões **http**:
+Instale `axios` para requisições HTTP:
 
 ```sh
 npm install axios
 ```
 
-Crie um diretorio `src`:
-
-```sh
-mkdir src
-```
-
-Instale a dependência `ts-stack/markdown` para converter markdown para html.
+Instale `@ts-stack/markdown` para conversão de Markdown para HTML:
 
 ```sh
 npm install @ts-stack/markdown --save
 ```
 
-## Setup prettier (optional)
+Crie o diretório `src` para armazenar o código-fonte:
 
-Instale `prettier`:
+```sh
+mkdir src
+```
+
+## Configurar o Prettier (opcional)
+
+Instale o Prettier:
 
 ```sh
 npm install --save-dev --save-exact prettier
 ```
 
-Configure o `prettier`:
+Configure o Prettier criando os arquivos `.prettierrc` e `.prettierignore`:
 
-```
+```sh
 echo '{
   "semi": false,
   "singleQuote": true
@@ -122,15 +108,14 @@ package-lock.json
 ollama/' > .prettierignore
 ```
 
-## Desenvolvendo o Projeto
+## Desenvolvimento do Projeto
 
-### Baixe a Lista de Cidades Brasileiras
+### Obtenção da Lista de Cidades Brasileiras
 
-Baixe a lista de cidades brasileiras por população no site do [IBGE](https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2021/)
+Baixe a lista de cidades brasileiras por população no site do [IBGE](https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2021/).
+Limpe o arquivo no Excel, removendo cabeçalhos e rodapés, e exporte para `.csv` no caminho [./resources/cities.csv](./resources/cities.csv).
 
-Limpe o arquivo no Excel, remova cabeçalhos e rodapés, e exporte para .csv em [./resources/cities.csv](./resources/cities.csv).
-
-Exemplo do arquivo:
+Exemplo de arquivo:
 
 ```csv
 UF,COD_UF,COD_MUNICIPIO,NOME_DO_MUNICIPIO,POPULACAO_ESTIMADA
@@ -140,11 +125,11 @@ RO,11,00031,Cabixi,5067
 RO,11,00049,Cacoal,86416
 ```
 
-### Crie a Lista de Cidades Brasileiras em JSON
+### Geração da Lista de Cidades em JSON
 
-Implemente a funcionalidade que cria a lista de cidades em **json**.
-Crie o arquivo [./src/make-cities.ts](./src/make-cities.ts).
-Leia o arquivo [./resources/cities.csv](./resources/cities.csv) e converta em [./resources/cities.json](./resources/cities.json) mapeando os campos como abaixo:
+Implemente a funcionalidade que vai gerar uma lista de cidades em JSON.
+
+Crie o arquivo [./src/make-cities.ts](./src/make-cities.ts) e implemente a funcionalidade que ler o arquivo [./resources/cities.csv](./resources/cities.csv) e converte em [./resources/cities.json](./resources/cities.json) mapeando os campos como abaixo:
 
 | csv                | json           |
 | ------------------ | -------------- |
@@ -153,9 +138,10 @@ Leia o arquivo [./resources/cities.csv](./resources/cities.csv) e converta em [.
 | NOME_DO_MUNICIPIO  | nameNormalized |
 | POPULACAO_ESTIMADA | population     |
 
-Normalize o conteúdo do campo `nameNormalized`. Por example, a cidade `Sao Paulo` será nomalizado para `sao-paulo`.
+Normalize o nome das cidades no campo `nameNormalized`. Por exemplo, `São Paulo` deve ser normalizado para `sao-paulo`.
+Inclua somente as 20 cidades mais populosas no resultado final.
 
-Limite o resultado final para conter apenas as 10 cidades mais populosas.
+Crie um script de execução:
 
 ```sh
 npm run make-cities
@@ -165,17 +151,11 @@ npm run make-cities
 
 Siga os passos do vido anterior ??? para iniciar o servidor Llama em sua máquina.
 
-### Crie o Conteúdo Turístico das Cidades
+### Criação do Conteúdo Turístico das Cidades
 
-Implemente a funcionalidade que cria o guia turístico de cada cidade.
-Crie o arquivo [./src/make-cities-content.ts](./src/make-cities-content.ts).
-Leia or arquivo [./resources/cities.json](./resources/cities.json) e gere um arquivo `./resources/content/city-x.html` para cada cidade.
-Por exemplo, para a cidade `São Paulo`, escreva o arquivo `./resources/content/sao-paulo.html`.
-Utilize o seguinte prompt de inteligência artificial:
+Implemente a funcionalidade que vai gerar o guia turístico de cada cidade.
 
-```
-Onde fica a cidade de {{CIDADE}}.
-```
+Crie o arquivo [./src/make-cities-content.ts](./src/make-cities-content.ts) e implemente a funcionalidade que ler o arquivo [./resources/cities.json](./resources/cities.json). Para cada cidade, envie um prompt para o Llama gerar um guia turístico e salve o conteúdo em um arquivo HTML em [./resources/content/](./resources/content/). Utilize o campo `nameNormalized` para o nome do arquivo. Por exemplo `sao-paulo.html`.
 
 Crie o diretório `./resources/content`:
 
@@ -189,26 +169,22 @@ Crie um script de execução:
 npm run make-cities-content
 ```
 
-### Criar um Layout Padrão
+### Criação do Layout para as Páginas
 
-Manualmente, crie um layout padrão para o website.
-Crie o arquivo [./resources/layout.html](./resources/layout.html) outros arquivos para o layout no diretório [./resources/layout](./resources/layout)
-que conterão o esqueleto das páginas. O conteúdo será inserido posteriormente.
+Crie o layout padrão em [./resources/layout/layout.html](./resources/layout/layout.html) que deve incluir um link para a página inicial e uma marcação `{{CONTENT}}` que posteriormente será substituído com o conteúdo. Outros arquivos de layout podem ser salvos no diretório [./resources/layout](./resources/layout/).
 
-No `layout.html`, inclua:
+### Criação da Página Inicial
 
-- O texto `{{CONTENT}}` usado como uma marcação para ser substituído posteriormente.
-- Link para a página `./index.html`
+Implemente a funcionalidade que criará a páginina inicial.
 
-### Crie a Página Inicial
+Crie o arquivo [./src/make-index-page.ts](./src/make-index-page.ts) que copia o directório [./resources/layout/](./resources/layout/) para [.docs/](./docs/). Leia or arquivos [./resources/cities.json](./resources/cities.json) e [./resources/layout/layout.html](./resources/layout/layout.html) e crie uma lista de links para cada cidade e substitua pela marcação `{{CONTENT}}` do arquivo de layout. Por exemplo:
 
-Implemente a funcionalidade que cria a página inicial.
-Crie o arquivo [./src/make-index-page.ts](./src/make-index-page.ts).
-Copie o [./resources/layout/](./resources/layout/) para [.docs/](./docs/).
-Leia os arquivos
-[./resources/cities.json](./resources/cities.json),
-[./resources/layout/layout.html](./resources/layout/layout.html).
-Crie uma lista de links para cada cidade e injete not layout. Por exemple: `<p><a href="sao_paulo.html">São Paulo</a></p>`.
+```html
+<p><a href="sao_paulo.html">São Paulo</a></p>
+<p><a href="rio_de_janeiro.html">Rio de Janeiro</a></p>
+` ...
+```
+
 Escreva o resultado em [./docs/index.html].
 
 Crie o diretório `./docs`:
@@ -223,15 +199,15 @@ Crie um script de execução:
 npm run make-index-page
 ```
 
-### Gerar Páginas das Cidades
+### Geração do Guia Turístico
 
-Implemente a funcionalidade para criar as páginas das cidades.
-Crie o arquivo [./src/make-cities-pages.html](./src/make-cities-pages.ts).
-Leia os arquivos
-[./resources/cities.json](./resources/cities.json),
-[./resources/layout.html](./resources/layout.html).
+Implemente a funcionalidade que criará a página de guia turístico de cada cidades.
+
+Crie o arquivo [./src/make-cities-pages.html](./src/make-cities-pages.ts) e leia os arquivos
+[./resources/cities.json](./resources/cities.json) e [./resources/layout.html](./resources/layout.html).
 Para cada cidade, leia o conteúdo correspondent do diretório [./resources/content](./resources/content/) e
-injete no layout.
+substitua pela marcação `{{CONTENT}}` do arquivo de layout.
+
 Escreva o resultado em [./docs/](./docs/).
 Por exemplo, para a cidade `São Paulo`, crie o arquivo `./docs/sao-paulo.html`.
 

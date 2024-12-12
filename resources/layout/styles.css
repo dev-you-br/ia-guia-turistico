@@ -18,32 +18,103 @@ section {
   margin: 0;
 }
 /* End of css reset */
-/* Start of typography */
+
+/* Start of Typography*/
+/* Setup */
+html {
+  /* Change default typefaces here */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 115%;
+  -webkit-font-smoothing: antialiased;
+}
+/* Copy & Lists */
+p {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+ul,
+ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+ul li,
+ol li {
+  line-height: 1.5rem;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+/* Headings */
 h1,
 h2,
 h3,
 h4,
-h5 {
-  font-weight: bold;
-  margin: 1em 0 0.5em 0;
+h5,
+h6 {
+  /* Change heading typefaces here */
+  font-family: sans-serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
 }
-
 h1 {
-  font-size: 20pt;
+  font-size: 2rem;
+  line-height: 2rem;
+  margin-top: 2rem;
 }
-
 h2 {
-  font-size: 18pt;
+  font-size: 1.8rem;
+  line-height: 2rem;
+  margin-top: 2rem;
 }
-
 h3 {
-  font-size: 16pt;
+  font-size: 1.25rem;
 }
+h4 {
+  font-size: 1rem;
+}
+h5 {
+  font-size: 0.8rem;
+}
+h6 {
+  font-size: 0.6rem;
+}
+/* Tables */
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 33px;
+}
+/* Code blocks */
+code {
+  vertical-align: bottom;
+}
+/* Leading paragraph text */
+.lead {
+  font-size: 1.414rem;
+}
+/* Hug the block above you */
+.hug {
+  margin-top: 0;
+}
+/*End of Typography */
 
-ul {
-  padding: 1em 1em 1em 1em;
-}
-/* End of typography */
+
 
 .layout-body {
   display: flex;
@@ -51,7 +122,6 @@ ul {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #1c1c1c;
   background-color: #fdfdfd;
   overflow-x: hidden;
@@ -95,7 +165,7 @@ ul {
   font-size: 4rem;
   color: white;
   text-shadow: 4px 4px 7px rgb(43, 43, 73);
-  margin: 6rem 0 0 3rem;
+  margin: 5rem 0 0 3rem;
   text-decoration: none;
 }
 

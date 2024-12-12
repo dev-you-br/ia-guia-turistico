@@ -29,8 +29,8 @@ html {
 }
 /* Copy & Lists */
 p {
-  line-height: 1.5rem;
-  margin-top: 1.5rem;
+  line-height: 1.3rem;
+  margin-top: 1.15rem;
   margin-bottom: 0;
 }
 ul,
@@ -215,9 +215,14 @@ code {
 
 .footer-item {
   padding: 1em 0 1em 0;
-  line-height: 1.5em;
   text-align: center;
+  font-size: medium ;
 }
+
+.footer-item p {
+  margin: 0;
+}
+
 
 .cities-links {
   text-align: center;

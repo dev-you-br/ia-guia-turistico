@@ -4,6 +4,9 @@ Neste projeto, vamos desenvolver tudo do zero. Será uma excelente oportunidade 
 
 Vamos construir um site que oferece guias turísticos para diversas cidades brasileiras, criado com a tecnologia de inteligência artificial (IA) do Llama, TypeScript e hospedado no GitHub Pages.
 
+## Demo
+Este projeto estah hospedado pelo github pages: https://dev-you-br.github.io/ia-guia-turisticojjj
+
 ## Criando um Repositório no GitHub
 
 Crie um novo repositório no GitHub:
